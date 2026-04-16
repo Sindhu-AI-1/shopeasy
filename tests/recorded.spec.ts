@@ -1,0 +1,32 @@
+import { test, expect } from '@playwright/test';
+
+test('test', async ({ page }) => {
+  await page.goto('http://localhost:5173/');
+  await page.locator('div').nth(1).click();
+  await page.getByTestId('username-input').click();
+  await page.getByTestId('username-input').click();
+  await page.getByTestId('username-input').fill('user@test.com');
+  await page.getByTestId('password-input').click();
+  await page.getByTestId('password-input').fill('Test@1234 ');
+  await page.getByTestId('remember-me').check();
+  await page.getByTestId('login-btn').click();
+  await page.getByTestId('password-input').click();
+  await page.getByTestId('password-input').fill('Test@1234');
+  await page.getByTestId('toggle-password').click();
+  await page.getByTestId('login-btn').click();
+  await page.getByTestId('filter-fashion').click();
+  await page.getByTestId('add-to-cart-2').click();
+  await page.getByTestId('filter-kitchen').click();
+  await page.getByTestId('add-to-cart-3').click();
+  await expect(page.getByTestId('filter-electronics')).toBeVisible();
+  await page.getByTestId('filter-electronics').click();
+  await page.getByTestId('add-to-cart-1').click();
+  await page.getByTestId('filter-sports').click();
+  await page.getByTestId('add-to-cart-4').click();
+  await expect(page.getByTestId('filter-all')).toBeVisible();
+  await page.getByTestId('add-to-cart-4').click();
+  await page.getByTestId('filter-kitchen').click();
+  await expect(page.getByTestId('filter-all')).toBeVisible();
+  await page.getByTestId('filter-sports').click();
+  await expect(page.getByTestId('add-to-cart-4')).toBeVisible();
+});
